@@ -1,0 +1,18 @@
+{
+    "schools": [
+        {
+            "id": "<< generated id >>",
+            "school": "<< school name >>",
+            "calendar": "<< meeting calendar >>",
+            "majors": [
+                { "major": "M1" }
+            ],
+            "domains" : [
+                { "domain" : "D1" }
+            ],
+            "skills" : [
+                { "skill" : "S1"}
+            ]        
+        }   
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "majors" : [
+        { "major" : "Computer Science"},
+        { "major" : "Electronics and Communications"},
+        { "major" : "Electrical"},
+        { "major" : "Chemical"},
+        { "major" : "Mechanical"},
+        { "major" : "Civil"},
+        { "major" : "Architecture"},
+        { "major" : "Data Science"}
+    ]
+}

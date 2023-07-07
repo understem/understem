@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LandingApp">
+<head>
+  <meta name="google-signin-client_id" content="546809456649-s3hj6c5f3l2d22tfhnr9bli403dlam99.apps.googleusercontent.com">
+  <title>UnderStem landing page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel='stylesheet' href='https://material.angularjs.org/1.2.3/angular-material.css'>
+  <link rel='stylesheet' href='https://material.angularjs.org/1.2.3/docs.css'>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="https://api.typedream.com/v0/document/public/69fe37fb-63c7-4f3a-b66d-406f56e16d96_Untitled_Artwork_2_jpg.jpg">
+
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script  src='https://material.angularjs.org/1.2.3/angular-material.js'> </script>
+
+<script  src="./notifications.js"></script>
+<link rel="stylesheet" href="./notify-style.css">
+
+<script  src="./script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-cookies.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+</head>
+<body ng-controller="LandingCtrl as ctrl">
+  <div ng-init="loadContent()"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <div class="topnav" id="myTopnav">
+    <a href="https://www.understem.org"></a>
+    <a href="https://www.understem.org"> <img src="https://www.understem.com/image" style="height:25px;width:30px"  class="active"> </a>
+    <a href="https://www.understem.org" style="font-size:20px;" class="spa"> <b>understem</b></a>
+    <a href="https://www.understem.org/getting-started" style="font-size:20px;" class="crap"  >getting started</a>      
+    <a href="https://www.understem.org/schools" style="font-size:20px;" class="crap"  >schools</a>
+    <a href="https://www.understem.org/blogs" style="font-size:20px;" class="crap"  >blogs</a>
+    <a href="https://www.understem.org/about" style="font-size:20px;" class="crap"  >about</a>
+    <a href="https://www.understem.org/contact-us" style="font-size:20px;" class="crap"  >contact us</a>
+
+    <div class="brap">
+        <a href="https://www.understem.org" style="font-size:20px;" > <b>{{display_name}} </b></a>
+        <a href="https://www.understem.org"  style="font-size:15px;" > logout </a>
+    </div>
+
+  </div>
+
+  </div> 
+    
+
+      <div ng-controller="LandingCtrl as ctrl" ng-cloak="" class="dialogdemoBasicUsage">
+        <div  ng-controller="LandingCtrl as ctrl" style="height:100%;width:1.5em;min-width:1.5em"></div>
+        <div class="navbar-item lg-smallpadding" ng-model="display_name">
+            <div ng-controller="LandingCtrl as ctrl"  class = "horrible"  style="font-size:18px;"  >
+              Welcome <b>{{display_name}}</b>! 
+              <br> </br>
+              You can add this <a href= {{meeting_invite}}
+               target="_blank"> meeting link </a> to your Google Calendar to start attending understem sessions with <b>{{school_name}}</b>.
+            <br> </br>
+
+            </div>
+      </div>
+  
+        <md-content>
+        <md-tabs  md-selected="ctrl.selectedIndex"  md-dynamic-height="" md-border-bottom="" class="horrible" >          
+          <md-tab label="Open Questions"  md-on-select="ctrl.selectedIndex = 0" md-on-select=" md-on-select="ctrl.fetchAlumniSkills()">
+            <md-content class="md-padding">
+              <div>
+                  <div>
+                    <table border="0">
+                      <tr  ng-controller="LandingCtrl as ctrl"   ng-if="!x.isResolved" ng-value="x" ng-repeat="x in questions.Student_Query  track by $index">
+                        <td>
+                          <input type="radio" name="qRadioName" id="{{x.id}}" ng-model='qChkBox' value="{{x.id}}" ng-click="selectQuestion($event)"> 
+                          <md-tooltip md-direction="left">Refresh</md-tooltip>
+                          </td>
+                        <td>
+                          <div class="a">
+                              <section class="example-section">
+                                {{x.question}}
+                              <md-tooltip md-direction="left">  asked on: {{x.submit_time}} </md-tooltip>
+                           </section>
+                           </div>   
+                        </td>                        
+                    </tr>
+                  </table>  
+              </div>
+              <br>
+              <div  ng-controller="LandingCtrl as ctrl" >
+                  <md-button  (submit)="onSubmit()" type="submit"  ng-disabled="checkForDisable()"  
+                    aria-label='Delete'  ng-click="resolveQuestion()"  class="md-primary md-raised demo-dialog-open-button ">
+                    Resolve
+                  </md-button>
+                </div>
+
+ 
+            </md-content>
+          </md-tab>
+
+          <md-tab label="Resolved Questions"  md-on-select="ctrl.selectedIndex = 1" md-on-select=" md-on-select="ctrl.fetchAlumniSkills()">
+            <md-content class="md-padding">
+              <div>
+                  <div>
+                    <table border="0">
+                      <tr  ng-controller="LandingCtrl as ctrl"  ng-if="x.isResolved" ng-value="x" ng-repeat="x in questions.Student_Query  track by $index">
+                        <td>
+                          <div class="a">
+                          <section class="example-section">
+                              {{x.question}}
+                              <md-tooltip md-direction="left">  asked on : {{x.submit_time}} </md-tooltip>
+                              </section>
+                            </div>
+                        </td>
+                        <td>
+                          {{x.resolved_time}}
+                        </td>                        
+                    </tr>
+                  </table>  
+              </div>
+            </md-content>
+          </md-tab>
+
+        </md-tabs>
+      </md-content>
+    </div>
+
+    </div>
+  
+</body>
+
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+<!-- partial -->
+
+</body>
+</html>
+
